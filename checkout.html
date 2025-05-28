@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+
+    <!-- Delivery Address -->
+    <section class="section-box">
+      <h3>Delivery Address</h3>
+      <div class="address-grid">
+        <input type="text" placeholder="Flat Number" />
+        <input type="text" placeholder="Floor" />
+        <input type="text" placeholder="Building Name" />
+        <input type="text" placeholder="Area" />
+        <input type="text" placeholder="City" />
+        <input type="text" placeholder="State" />
+        <input type="text" placeholder="Country" />
+      </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="section-box">
+      <h3>Select Payment Method</h3>
+      <div class="payment-options">
+        <label><input type="radio" name="payment" value="UPI"> UPI</label>
+        <label><input type="radio" name="payment" value="NetBanking"> Net Banking</label>
+        <label><input type="radio" name="payment" value="DebitCard"> Debit Card</label>
+        <label><input type="radio" name="payment" value="CreditCard"> Credit Card</label>
+        <label><input type="radio" name="payment" value="COD"> Cash on Delivery</label>
+      </div>
+    </section>
+
+    <button id="placeOrderBtn">Place Order</button>
+
+    <!-- Order Placed Message -->
+    <div class="order-placed-msg" id="orderPlacedMsg">
+      ✅ Your order has been placed successfully!
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById("placeOrderBtn").addEventListener("click", function () {
+      const selectedPayment = document.querySelector('input[name="payment"]:checked');
+      if (selectedPayment) {
+        document.getElementById("orderPlacedMsg").style.display = "block";
+      } else {
+        alert("Please select a payment method.");
+      }
+    });
+  </script>
+</body>
+</html>

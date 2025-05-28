@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lip Care - Beauty Bliss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>💋 Lip Care</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="skincare.html">Skin Care</a>
+      <a href="haircare.html">Hair Care</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+  <main class="products">
+    <div class="product-card">
+      <img src="images/lip balm.jpeg" alt="Lip Balm">
+      <h3>Lip Balm</h3>
+      <p>₹150</p>
+      <button onclick="addToWishlist('lip balm', 150)">Wishlist</button>
+
+      <button onclick="addToCart('lip balm', 150)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/lipscrub.jpeg" alt="Lip Scrub">
+      <h3>Lip Scrub</h3>
+      <p>₹180</p>
+      <button onclick="addToWishlist('lip scrub', 180)">Wishlist</button>
+
+      <button onclick="addToCart('Lip Scrub', 180)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/liptint.jpeg" alt="Lip Tint">
+      <h3>Lip Tint</h3>
+      <p>₹220</p>
+      <button onclick="addToWishlist('lip tint', 220)">Wishlist</button>
+
+      <button onclick="addToCart('Lip Tint', 220)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/lipmask.jpeg" alt="Lip Mask">
+      <h3>Lip Mask</h3>
+      <p>₹220</p>
+      <button onclick="addToWishlist('lip mask', 220)">Wishlist</button>
+
+      <button onclick="addToCart('Lip Mask', 220)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/lipstick.webp" alt="Lip Stick">
+      <h3>Lip Stick</h3>
+      <p>₹220</p>
+      <button onclick="addToWishlist('lip stick', 220)">Wishlist</button>
+
+      <button onclick="addToCart('Lip Stick',220)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/sugar.jpeg" alt="Sugar Lip Stick">
+      <h3>Sugar Lip Stick</h3>
+      <p>₹220</p>
+      <button onclick="addToWishlist('sugar lip stick', 220)">Wishlist</button>
+
+      <button onclick="addToCart('Sugar Lip Stick', 220)">Add to Cart</button>
+
+    </div>
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+      function addToCart(name, price) {
+        cart.push({ name, price });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(`${name} added to cart!`);
+        updateCartCount();
+      }
+    
+      function updateCartCount() {
+        const cartCount = document.getElementById("cart-count");
+        if (cartCount) {
+          cartCount.textContent = cart.length;
+        }
+      }
+    
+      window.onload = function () {
+        updateCartCount();
+      };
+    </script>
+    <script>
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    
+      function addToWishlist(name, price) {
+        // Check if already in wishlist
+        const exists = wishlist.some(item => item.name === name);
+        if (exists) {
+          alert(`${name} is already in your wishlist!`);
+          return;
+        }
+    
+        wishlist.push({ name, price });
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        alert(`${name} added to wishlist!`);
+        updateWishlistCount();
+      }
+    
+      function updateWishlistCount() {
+        const wishlistCount = document.getElementById("wishlist-count");
+        if (wishlistCount) {
+          wishlistCount.textContent = wishlist.length;
+        }
+      }
+    
+      // Call on page load
+      window.onload = function () {
+        updateWishlistCount();
+      };
+    </script>
+    
+    
+  </main>
+</body>
+</html>

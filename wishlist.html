@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - Beauty Store</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff0f5;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d63384;
+    }
+
+    .wishlist-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .wishlist-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+
+    .wishlist-item span {
+      font-size: 16px;
+    }
+
+    .wishlist-item button {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #wishlist-items p {
+      text-align: center;
+      font-size: 16px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wishlist-container">
+    <h2>Your Wishlist</h2>
+    <div id="wishlist-items">
+      <!-- Wishlist items will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const wishlistDiv = document.getElementById("wishlist-items");
+
+    if (wishlist.length === 0) {
+      wishlistDiv.innerHTML = "<p>Your wishlist is empty.</p>";
+    } else {
+      wishlist.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.classList.add("wishlist-item");
+        div.innerHTML = `
+          <span>${item.name} - ₹${item.price}</span>
+          <button onclick="removeFromWishlist(${index})">Remove</button>
+        `;
+        wishlistDiv.appendChild(div);
+      });
+    }
+
+    function removeFromWishlist(index) {
+      wishlist.splice(index, 1);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      location.reload(); // Reload the page to update UI
+    }
+  </script>
+
+</body>
+</html>

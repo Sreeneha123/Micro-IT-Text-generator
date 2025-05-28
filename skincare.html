@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skincare Products</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <h2 class="section-title">Skincare Products</h2>
+    <div class="product-row">
+
+    <div class="product-card">
+      <img src="images/cleanser.jpeg" alt="Cleanser" />
+      <h3>Gentle Face Cleanser</h3>
+      <p>₹499</p>
+      <button onclick="addToWishlist('Gentle Cleanser', 499)"> Wishlist</button>
+      <button onclick="addToCart('Cleanser', 499)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/Eye cream.jpeg" alt="Cleanser" />
+      <h3>Under Eye Cream</h3>
+      <p>₹499</p>
+      <button onclick="addToWishlist('eye cream', 499)"> Wishlist</button>
+      <button onclick="addToCart('Eye Cream', 499)">Add to Cart</button>
+
+    </div>
+
+    <div class="product-card">
+      <img src="images/face mask.jpeg" alt="Face Mask" />
+      <h3>Hydrating Face Mask</h3>
+      <p>₹699</p>
+      <button onclick="addToWishlist('face mask', 699)">Wishlist</button>
+      <button onclick="addToCart('Face Mask', 699)">Add to Cart</button>
+
+    </div>
+
+    <div class="product-card">
+      <img src="images/night cream.jpg" alt="Night Cream" />
+      <h3>Night Repair Cream</h3>
+      <p>₹899</p>
+      <button onclick="addToWishlist('night cream', 899)">Wishlist</button>
+      <button onclick="addToCart('Night Cream', 899)">Add to Cart</button>
+
+    </div>
+
+  </div>
+
+</div>
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${name} added to cart!`);
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const cartCount = document.getElementById("cart-count");
+    if (cartCount) {
+      cartCount.textContent = cart.length;
+    }
+  }
+
+  window.onload = function () {
+    updateCartCount();
+  };
+</script>
+<script>
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  function addToWishlist(name, price) {
+    // Check if already in wishlist
+    const exists = wishlist.some(item => item.name === name);
+    if (exists) {
+      alert(`${name} is already in your wishlist!`);
+      return;
+    }
+
+    wishlist.push({ name, price });
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    alert(`${name} added to wishlist!`);
+    updateWishlistCount();
+  }
+
+  function updateWishlistCount() {
+    const wishlistCount = document.getElementById("wishlist-count");
+    if (wishlistCount) {
+      wishlistCount.textContent = wishlist.length;
+    }
+  }
+
+  // Call on page load
+  window.onload = function () {
+    updateWishlistCount();
+  };
+</script>
+
+
+  </body>
+  </body>
+
+</body>
+</html>

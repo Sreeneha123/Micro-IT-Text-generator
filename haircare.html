@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hair Care - Beauty Bliss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>💇‍♀️ Hair Care</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="skincare.html">Skin Care</a>
+      <a href="lipcare.html">Lip Care</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+  <main class="products">
+    <div class="product-row">
+    <div class="product-card">
+      <img src="images/shampoo.jpeg" alt="Shampoo">
+      <h3>Herbal Shampoo</h3>
+      <p>₹249</p>
+      <button onclick="addToWishlist('Shampooo', 249)">Wishlist</button>
+
+      <button onclick="addToCart('Shampoo', 249)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/conditioner.jpeg" alt="Conditioner">
+      <h3>Hair Conditioner</h3>
+      <p>₹279</p>
+      <button onclick="addToWishlist('Conditioner', 279)">Wishlist</button>
+
+      <button onclick="addToCart('Hair Conditioner', 279)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/serum.jpeg" alt="Hair Serum">
+      <h3>Hair Serum</h3>
+      <p>₹350</p>
+      <button onclick="addToWishlist('Hair Serum', 350)">Wishlist</button>
+
+      <button onclick="addToCart('hair Serum', 350)">Add to Cart</button>
+
+    </div>
+    <div class="product-card">
+      <img src="images/oil.jpeg" alt="Hair Oil">
+      <h3>Hair Oil</h3>
+      <p>₹350</p>
+      <button onclick="addToWishlist('Hair Oil', 350)">Wishlist</button>
+
+      <button onclick="addToCart('Hair Oil', 350)">Add to Cart</button>
+
+    </div>
+    </div>
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+      function addToCart(name, price) {
+        cart.push({ name, price });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(`${name} added to cart!`);
+        updateCartCount();
+      }
+    
+      function updateCartCount() {
+        const cartCount = document.getElementById("cart-count");
+        if (cartCount) {
+          cartCount.textContent = cart.length;
+        }
+      }
+    
+      window.onload = function () {
+        updateCartCount();
+      };
+    </script>
+    <script>
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    
+      function addToWishlist(name, price) {
+        // Check if already in wishlist
+        const exists = wishlist.some(item => item.name === name);
+        if (exists) {
+          alert(`${name} is already in your wishlist!`);
+          return;
+        }
+    
+        wishlist.push({ name, price });
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        alert(`${name} added to wishlist!`);
+        updateWishlistCount();
+      }
+    
+      function updateWishlistCount() {
+        const wishlistCount = document.getElementById("wishlist-count");
+        if (wishlistCount) {
+          wishlistCount.textContent = wishlist.length;
+        }
+      }
+    
+      // Call on page load
+      window.onload = function () {
+        updateWishlistCount();
+      };
+    </script>
+    
+    
+  </main>
+</body>
+</html>

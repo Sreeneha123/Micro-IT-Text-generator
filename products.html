@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products - Beauty Bliss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>✨ Products</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+  <main>
+    <section class="category">
+      <h2>Skin Care</h2>
+      <button onclick="addToCart('Face Wash', 250)">Face Wash - ₹250</button>
+      <button onclick="addToWishlist('Night Cream')">❤️ Night Cream</button>
+    </section>
+
+    <section class="category">
+      <h2>Hair Care</h2>
+      <button onclick="addToCart('Shampoo', 300)">Shampoo - ₹300</button>
+      <button onclick="addToWishlist('Hair Oil')">❤️ Hair Oil</button>
+    </section>
+
+    <section class="category">
+      <h2>Lip Care</h2>
+      <button onclick="addToCart('Lip Balm', 100)">Lip Balm - ₹100</button>
+    </section>
+
+    <section class="category">
+      <h2>Combo Offers</h2>
+      <button onclick="addToCart('Skin + Hair Combo', 500)">Skin + Hair Combo - ₹500</button>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

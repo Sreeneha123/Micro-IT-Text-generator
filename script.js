@@ -1,26 +1,16 @@
-const text = document.getElementById("textToConvert");
-const convertBtn = document.getElementById("convertBtn");
-
-convertBtn.addEventListener('click', function () {
-    const speechSynth = window.speechSynthesis;
-    const enteredText = text.value;
-    const error = document.querySelector('.error-para');
-
-    if (!speechSynth.speaking &&
-        !enteredText.trim().length) {
-        error.textContent = `Nothing to Convert! 
-        Enter text in the text area.`
+function addToCart(name, price) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${name} added to cart!`);
+  }
+  
+  function addToWishlist(name) {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if (!wishlist.includes(name)) {
+      wishlist.push(name);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      alert(`${name} added to wishlist!`);
     }
-    
-    if (!speechSynth.speaking && enteredText.trim().length) {
-        error.textContent = "";
-        const newUtter =
-            new SpeechSynthesisUtterance(enteredText);
-        speechSynth.speak(newUtter);
-        convertBtn.textContent = "Sound is Playing..."
-    }
-    
-    setTimeout(() => {
-        convertBtn.textContent = "Play Converted Sound"
-    }, 5000);
-});
+  }
+  

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - Beauty Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fff0f5;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 20px;
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+
+    .cart-item span {
+      font-size: 16px;
+    }
+
+    .cart-item button {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .cart-total {
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    #checkoutBtn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #d63384;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      float: right;
+    }
+
+    #cart-items p {
+      text-align: center;
+      font-size: 16px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cart-container">
+    <h2>Your Shopping Cart</h2>
+    <div id="cart-items">
+      <!-- Cart items will appear here -->
+    </div>
+    <div class="cart-total" id="cart-total">Total: ₹0</div>
+    <button id="checkoutBtn" onclick="goToCheckout()">Continue to Checkout</button>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function displayCartItems() {
+      const cartItemsDiv = document.getElementById("cart-items");
+      const cartTotalDiv = document.getElementById("cart-total");
+      cartItemsDiv.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+        cartTotalDiv.textContent = "Total: ₹0";
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("cart-item");
+        itemDiv.innerHTML = `
+          <span>${item.name} - ₹${item.price}</span>
+          <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItemsDiv.appendChild(itemDiv);
+      });
+
+      cartTotalDiv.textContent = `Total: ₹${total}`;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCartItems();
+    }
+
+    function goToCheckout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      window.location.href = "checkout.html"; // Adjust if your path differs
+    }
+
+    window.onload = displayCartItems;
+  </script>
+</body>
+</html>

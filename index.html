@@ -1,38 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content=
-        "width=device-width, initial-scale=1.0">
-    <title>Text to Speech Converter</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beauty Bliss</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Ad Banner Styling */
+    .ad-banner {
+      background-color: #ffe4e1;
+      color: #8b0000;
+      padding: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .scroll-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 15s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      0%   { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .hero {
+      text-align: center;
+      margin: 20px auto;
+    }
+
+    .hero img {
+      width: 90%;
+      max-width: 700px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .category-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .category-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .category-box img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="app-container">
-            <div class="headings-container">
-                <h1>Text to Speech Converter</h1>
-                <h3>Enter Text and Convert into Speech</h3>
-            </div>
+  <header>
+    <h1>💄 Beauty Bliss</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="cart.html">Cart</a>
+      <a href="signin.html">Sign In</a>
+    </nav>
+  </header>
 
-            <div class="interaction-container">
-                <textarea id="textToConvert" 
-                    placeholder="Enter text to convert into speech..." 
-                    id="" cols="35" rows="10" 
-                    class="text-control"></textarea>
-
-                <p class="error-para"></p>
-
-                <button class="btn" id="convertBtn">
-                    Play Converted Sound
-                </button>
-            </div>
-        </div>
+  <!-- Ad Banner -->
+  <div class="ad-banner">
+    <div class="scroll-text">
+      💥 Mega Sale! Up to 50% off on Skin & Hair Care combos! 💥 | ✨ Free shipping on orders over ₹999! ✨ | 🎁 Get a free Lip Balm on your first order!
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <main>
+    <section class="hero">
+      <h2>Welcome to Beauty Bliss</h2>
+      <p>Your one-stop destination for skin, hair, and lip care essentials!</p>
+      <img src="images/beauty 1.jpeg" alt="beauty" width="300">
+
+    </section>
+
+    <section class="category-showcase">
+        <!-- Skin Care Category -->
+        <a href="skincare.html" class="category-box">
+          <img src="images/skin1.jpeg" alt="Skin Care">
+          <h3>Skin Care</h3>
+        </a>
+      
+        <!-- Hair Care Category -->
+        <a href="haircare.html" class="category-box">
+          <img src="images/hair1.jpeg" alt="Hair Care">
+          <h3>Hair Care</h3>
+        </a>
+      
+        <!-- Lip Care Category -->
+        <a href="lipcare.html" class="category-box">
+          <img src="images/lip1.jpeg" alt="Lip Care">
+          <h3>Lip Care</h3>
+        </a>
+      
+    </section>
+  </main>
 </body>
-
 </html>
